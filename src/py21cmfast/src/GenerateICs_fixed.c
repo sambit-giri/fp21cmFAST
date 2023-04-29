@@ -242,19 +242,15 @@ int ComputeInitialConditions(
                         b = -1.0;
                     }
                     else {
-                        if(user_params->FIXED_IC) {
-                            phi_flat = gsl_ran_flat(r[omp_get_thread_num()], 0, 2*PI);
-                            a = cos(phi_flat) * user_params->FIXED_IC;
-                            b = sin(phi_flat) * user_params->FIXED_IC;
-                            // printf("Fixed ICs.");
-                        }
-                        else {
-                            a = gsl_ran_ugaussian(r[omp_get_thread_num()]) / sqrt(2.0);
-                            b = gsl_ran_ugaussian(r[omp_get_thread_num()]) / sqrt(2.0);
-                        }
+                        // a = gsl_ran_ugaussian(r[omp_get_thread_num()]);
+                        // b = gsl_ran_ugaussian(r[omp_get_thread_num()]);
+                        phi_flat = gsl_ran_flat(r[omp_get_thread_num()], 0, 2*PI);
+                        a = -1.0 * cos(phi_flat);
+                        b = -1.0 * sin(phi_flat);
+                        printf("Fixed ICs.");
                     }
 
-                    HIRES_box[C_INDEX(n_x, n_y, n_z)] = 1.0 * sqrt(VOLUME*p) * (a + b*I);
+                    HIRES_box[C_INDEX(n_x, n_y, n_z)] = sqrt(VOLUME*p) * (a + b*I);
 
                 }
             }

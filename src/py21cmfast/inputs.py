@@ -440,6 +440,10 @@ class UserParams(StructWithDefaults):
     NO_RNG : bool, optional
         Ability to turn off random number generation for initial conditions. Can be
         useful for debugging and adding in new features
+    FIXED_IC : int, optional
+        Ability to fixed the initial conditions and run paired simulations. 
+        0: Not fixed, 1: Fixed, and -1: Fixed but opposite in phase with 1.
+        Default is 0.
     USE_FFTW_WISDOM : bool, optional
         Whether or not to use stored FFTW_WISDOMs for improving performance of FFTs
     USE_INTERPOLATION_TABLES: bool, optional
@@ -471,6 +475,7 @@ class UserParams(StructWithDefaults):
         "N_THREADS": 1,
         "PERTURB_ON_HIGH_RES": False,
         "NO_RNG": False,
+        "FIXED_IC": 0,
         "USE_INTERPOLATION_TABLES": None,
         "FAST_FCOLL_TABLES": False,
         "USE_2LPT": True,

@@ -28,6 +28,7 @@ struct UserParams{
     int N_THREADS;
     bool PERTURB_ON_HIGH_RES;
     bool NO_RNG;
+    int FIXED_IC;
     bool USE_INTERPOLATION_TABLES;
     bool FAST_FCOLL_TABLES; //Whether to use the fast Fcoll table approximation in EPS
     bool USE_2LPT;
