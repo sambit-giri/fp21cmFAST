@@ -21,6 +21,7 @@ struct UserParams{
     int HII_DIM;
     int DIM;
     float BOX_LEN;
+    float NON_CUBIC_FACTOR;
     bool USE_FFTW_WISDOM;
     int HMF;
     int USE_RELATIVE_VELOCITIES;
@@ -33,6 +34,7 @@ struct UserParams{
     bool FAST_FCOLL_TABLES; //Whether to use the fast Fcoll table approximation in EPS
     bool USE_2LPT;
     bool MINIMIZE_MEMORY;
+    bool KEEP_3D_VELOCITIES;
 };
 
 struct AstroParams{
@@ -72,8 +74,11 @@ struct FlagOptions{
     // Parameters taken from INIT_PARAMS.H
     bool USE_HALO_FIELD;
     bool USE_MINI_HALOS;
+    bool USE_CMB_HEATING; //CMB Heating Flag
+    bool USE_LYA_HEATING; //Lya Heating Flag
     bool USE_MASS_DEPENDENT_ZETA;
     bool SUBCELL_RSD;
+    bool APPLY_RSDS;
     bool INHOMO_RECO;
     bool USE_TS_FLUCT;
     bool M_MIN_in_Mass;
@@ -89,11 +94,10 @@ struct InitialConditions{
 };
 
 struct PerturbedField{
-    float *density, *velocity;
+    float *density, *velocity_x, *velocity_y, *velocity_z;
 };
 
 struct HaloField{
-
     int n_halos;
     float *halo_masses;
     int *halo_coords;
@@ -116,7 +120,6 @@ struct PerturbHaloField{
 
 
 struct TsBox{
-    int first_box;
     float *Ts_box;
     float *x_e_box;
     float *Tk_box;
@@ -124,7 +127,6 @@ struct TsBox{
 };
 
 struct IonizedBox{
-    int first_box;
     double mean_f_coll;
     double mean_f_coll_MINI;
     double log10_Mturnover_ave;
